@@ -1,10 +1,11 @@
-<h1>Trabalho prático da disciplina GCC218 - Algoritmos em Grafos</h1>
-Universidade Federal de Lavras
+<h1>Trabalho prático</h1>
+<h1>GCC218 - Algoritmos em Grafos</h1>
+<h2>Universidade Federal de Lavras</h2>
 
-Grupo V: 
-  Felipe Crisostomo Silva Oliveira - 202220937
-  Maria Eduarda Ferreira da Silva - 202310419
-  Vitória Christie Amaral Santos - 202310422
+<h3>Grupo V: </h3>
+  <p>Felipe Crisostomo Silva Oliveira - 202220937</p>
+  <p>Maria Eduarda Ferreira da Silva - 202310419</p>
+  <p>Vitória Christie Amaral Santos - 202310422</p>
 
 Turma 10A
 
