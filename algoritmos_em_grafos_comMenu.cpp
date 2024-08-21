@@ -868,7 +868,7 @@ int main() {
     cout << "9. Árvore de profundidade\n";
     cout << "10. Árvore de largura\n";
     cout << "11. Árvore geradora mínima\n";
-    cout << "12. Ordem topológia (Disponível apenas para grafos direcionados)\n";
+    cout << "12. Ordem topológica (Disponível apenas para grafos direcionados)\n";
     cout << "13. Caminho mínimo entre dois vértices (Disponível apenas para grafos ponderados)\n";
     cout << "14. Fluxo máximo (Disponível apenas para grafos ponderados)\n";
     cout << "15. Fecho transitivo (Disponível apenas para grafos ponderados)\n";
