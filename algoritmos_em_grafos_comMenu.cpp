@@ -558,7 +558,7 @@ public:
     }
 
     int encontrarCaminhoMinimo() { //Dijkstra
-        if (direcionado or !haPeloMenosDoisPesosDiferentes()) {
+        if (!haPeloMenosDoisPesosDiferentes()) {
             return -1;
         }
 
@@ -723,7 +723,7 @@ public:
             }
         }
 
-        if (alcancaveis.empty()) {
+        if (alcancaveis.empty() or direcionado == false) {
             cout << "-1" << endl;
         } else {
             sort(alcancaveis.begin(), alcancaveis.end());
@@ -876,7 +876,7 @@ int main() {
     cout << "16. Gerar trilha euleriana para grafos não orientados\n";
     cout << "17. Mostrar grau de entrada e saída de um grafo orientado\n";
     cout << "18. Imprimir a lista de adjacência do grafo\n\n";
-    cout << "Digite o grafo a ser analisado: " << endl;
+    cout << "Digite as opçoes: " << endl;
 
     string linha;
     vector<int> comandos;
@@ -890,8 +890,8 @@ int main() {
     while (ss >> comando) {
         comandos.push_back(comando);
     }
-    
-    cout << "Escolha as opções: " << endl;
+
+    cout << "Digite o grafo a ser analisado: " << endl;
     grafo = lerGrafo();
 
     int conexo = grafo.verificarConexo();
@@ -906,156 +906,64 @@ int main() {
 
     for (int c : comandos) {
     switch (c) {
-        case 1:
+        case 0:
             cout << conexo << endl;
             break;
-        case 2:
+        case 1:
             cout << bipartido << endl;
             break;
-        case 3:
+        case 2:
             cout << euleriano << endl;
             break;
-        case 4:
+        case 3:
             cout << ciclo << endl;
             break;
-        case 5:
+        case 4:
             cout << componenteConexo << endl;
             break;
-        case 6:
+        case 5:
             cout << fortementeConexo << endl;
             break;
-        case 7:
+        case 6:
             grafo.encontrarVerticesArticulacao();
             break;
-        case 8:
+        case 7:
             grafo.encontrarArestasPonte();
             break;
-        case 9:
+        case 8:
             grafo.imprimirArvoreProfundidade();
             break;
-        case 10:
+        case 9:
             grafo.imprimirArvoreLargura();
             break;
-        case 11:
+        case 10:
             cout << agm << endl;
             break;
-        case 12:
+        case 11:
             grafo.imprimirOrdenacaoTopologica();
             break;
-        case 13:
+        case 12:
             cout << caminhoMinimo << endl;;
             break;
-        case 14:
+        case 13:
             cout << fluxoMaximo << endl;
             break;
-        case 15:
+        case 14:
             grafo.fechoTransitivo();
             break;
-        case 16:
+        case 15:
             grafo.imprimirTrilhaEuleriana();
             break;
-        case 17:
+        case 16:
             grafo.calcularGraus();
             break;
-        case 18:
+        case 17:
             grafo.imprimirAdjList();
             break;
         default:
             cout << "Comando inválido\n";
     }
 }
-
-/*
-    do {
-
-        cin >> op;
-
-        if (op < 0 or op > 18){
-            cout << "Opção inválida. Tente novamente" << endl;
-        }
-
-        switch (op) {
-
-            case 1:
-                cout << conexo << endl;
-                break;
-
-            case 2:
-                cout << bipartido << endl;
-                break;
-            
-            case 3:
-                cout << euleriano << endl;
-                break;
-
-            case 4:
-                cout << ciclo << endl;
-                break;
-
-            case 5:
-                cout << componenteConexo << endl;
-                break;
-
-            case 6:
-                cout << fortementeConexo << endl;
-                break;
-
-            case 7:
-                grafo.encontrarVerticesArticulacao();
-                break;
-
-            case 8:
-                grafo.encontrarArestasPonte();
-                break;
-
-            case 9:
-                grafo.imprimirArvoreProfundidade();
-                break;
-
-            case 10:
-                grafo.imprimirArvoreLargura();
-                break;
-
-            case 11:
-                cout << agm << endl;
-                break;
-
-            case 12:
-                grafo.imprimirOrdenacaoTopologica();
-                break;
-
-            case 13:
-                cout << caminhoMinimo << endl;
-                break;
-
-            case 14:
-                cout << fluxoMaximo << endl;
-                break;
-
-            case 15:
-                grafo.fechoTransitivo();
-                break;
-
-            case 16:
-                grafo.imprimirTrilhaEuleriana();
-                break;
-
-            case 17:
-                grafo.calcularGraus();
-                break;
-
-            case 18:
-                grafo.imprimirAdjList();
-                break;
-
-            case 0:
-            break;
-
-            default:
-                break;
-        }
-
-    }while (op != 0);*/
     
     return 0;
 }
