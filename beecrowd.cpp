@@ -98,6 +98,7 @@ public:
     void adicionarAresta(int id_aresta, int u, int v, int peso) {
         adj_list[u].push_back({v, peso, id_aresta}); //// Adiciona a aresta (v, peso, id_aresta) à lista de adjacência de u
         adj_list_transposto[v].push_back(u); // Adiciona a aresta inversa no grafo transposto
+        arestas.push_back({peso, {u, v}});
 
         //se o grafo é não direcionado, adiciona a aresta inversa também
         if (!direcionado) {
@@ -476,15 +477,36 @@ public:
         cout << endl;
     }
 
+    
+    bool haPeloMenosDoisPesosDiferentes() {
+        set<int> pesos;
+        for (const auto &lista : adj_list) {
+            for (const auto &aresta : lista) {
+                pesos.insert(aresta[1]); // Adiciona o peso ao conjunto
+                if (pesos.size() > 1) {
+                    return true; // Já há pelo menos dois pesos diferentes
+                }
+            }
+        }
+        return false; // Todos os pesos são iguais ou não há arestas
+    }
+
     int kruskall() {
+
+        if (!haPeloMenosDoisPesosDiferentes()){
+            return -1;
+        }
+
+        if (direcionado == true) //kruskall é para grafos não direcionados
+            return -1;
+
         // Ordena as arestas com base no peso
         sort(arestas.begin(), arestas.end());
 
         int resultado = 0; //custo total da AGM
         UFDS ufds(vertices); // Cria a estrutura Union-Find para o número de vértices
 
-        if (direcionado == true) //kruskall é para grafos não direcionados
-            return -1;
+    
 
         int numero_arestas = 0;
         for (auto &e : arestas) {
@@ -542,19 +564,6 @@ public:
             Stack.pop();
         }
         cout << endl;
-    }
-
-    bool haPeloMenosDoisPesosDiferentes() {
-        set<int> pesos;
-        for (const auto &lista : adj_list) {
-            for (const auto &aresta : lista) {
-                pesos.insert(aresta[1]); // Adiciona o peso ao conjunto
-                if (pesos.size() > 1) {
-                    return true; // Já há pelo menos dois pesos diferentes
-                }
-            }
-        }
-        return false; // Todos os pesos são iguais ou não há arestas
     }
 
     int encontrarCaminhoMinimo() { //Dijkstra
@@ -700,21 +709,11 @@ public:
         return fluxo_maximo;
     }
 
-    void DFSFecho(int v, vector<bool> &visitado) {
-        visitado[v] = true;
-        for (const auto &edge : adj_list[v]) {
-            int u = edge[0];
-            if (!visitado[u]) {
-                DFS(u, visitado);
-            }
-        }
-    }
-
     void fechoTransitivo() { //usa a dfsFecho e imprime todos os vertices que podem ser alcançados a partir do vertice 0
         vector<bool> visitado(vertices, false);
 
         // Realizar DFS a partir do vértice 0
-        DFSFecho(0, visitado);
+        DFS(0, visitado);
 
         vector<int> alcancaveis;
         for (int i = 1; i < vertices; ++i) {
